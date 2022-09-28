@@ -1,0 +1,4 @@
+spring:
+  cloud:
+    config:
+      url: localhost:8888
