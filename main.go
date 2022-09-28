@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
+
 	"github.com/harpergx/springconfig-app-in-go/config"
 	"github.com/harpergx/springconfig-app-in-go/controller"
 	"github.com/spf13/viper"
