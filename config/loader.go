@@ -36,12 +36,14 @@ func parseConfiguration(body []byte) {
 	if err != nil {
 		panic("Cannot parse configuration, message: " + err.Error())
 	}
-	json.Unmarshal(body, &cloudConfig)
+
 	for key, value := range cloudConfig.PropertySources[0].Source {
 		viper.Set(key, value)
+
 	}
 	viper.SetConfigType("json")
 	if viper.IsSet("server_name") {
 		fmt.Printf("Successfully loaded configuration for service %s\n", viper.GetString("server_name"))
 	}
+
 }

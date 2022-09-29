@@ -5,19 +5,13 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
+	"github.com/spf13/viper"
 )
 
 type CommonResponse struct {
 	Data   interface{} `json:"data"`
 	Status int         `json:"status"`
 	Error  interface{} `json:"error"`
-}
-
-var RuntimeConf = RuntimeConfig{}
-
-type RuntimeConfig struct {
-	myconfig    string `json:"config"`
-	description string `json:"info.description"`
 }
 
 func Response(w http.ResponseWriter, data interface{}, status int, err error) {
@@ -39,8 +33,8 @@ func Response(w http.ResponseWriter, data interface{}, status int, err error) {
 func Controller(router *mux.Router) error {
 
 	router.HandleFunc("/check/profile", func(w http.ResponseWriter, r *http.Request) {
-
-		Response(w, "test", http.StatusOK, nil)
+		tmp := viper.Get("config.name")
+		Response(w, tmp, http.StatusOK, nil)
 
 	}).Methods("GET")
 	return nil
