@@ -13,8 +13,10 @@ type CommonResponse struct {
 	Error  interface{} `json:"error"`
 }
 
-type Profile struct {
-	name        string `json:"config.name"`
+var RuntimeConf = RuntimeConfig{}
+
+type RuntimeConfig struct {
+	myconfig    string `json:"config"`
 	description string `json:"info.description"`
 }
 
@@ -38,7 +40,7 @@ func Controller(router *mux.Router) error {
 
 	router.HandleFunc("/check/profile", func(w http.ResponseWriter, r *http.Request) {
 
-		Response(w, "config.name", http.StatusOK, nil)
+		Response(w, "test", http.StatusOK, nil)
 
 	}).Methods("GET")
 	return nil
